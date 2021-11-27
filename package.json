@@ -12,11 +12,12 @@
     "storybook": "npm run analyze -- --exclude dist && web-dev-server -c .storybook/server.mjs",
     "storybook:build": "npm run analyze -- --exclude dist && build-storybook",
     "build": "rimraf dist && rollup -c rollup.config.js && npm run analyze -- --exclude dist",
-    "start:build": "web-dev-server --root-dir dist --app-index index.html --open",
     "analyze": "cem analyze --litelement",
-    "start": "web-dev-server"
+    "start-dev": "web-dev-server -w",
+    "start": "web-dev-server --root-dir dist --app-index index.html --port 8080"
   },
   "dependencies": {
+    "@web/dev-server": "^0.1.28",
     "lit": "^2.0.2"
   },
   "devDependencies": {
@@ -27,7 +28,6 @@
     "@open-wc/testing": "next",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^13.0.6",
-    "@web/dev-server": "^0.1.25",
     "@web/dev-server-storybook": "next",
     "@web/rollup-plugin-html": "^1.10.1",
     "@web/rollup-plugin-import-meta-assets": "^1.0.7",
@@ -65,5 +65,8 @@
       "prettier --write"
     ]
   },
-  "customElements": "custom-elements.json"
+  "customElements": "custom-elements.json",
+  "engines": {
+    "node": "16.x.x"
+  }
 }

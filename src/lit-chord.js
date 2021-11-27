@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { bulmaStyle } from './bulma-style';
+import { bulmaStyle } from './bulma-style.js';
 
 const chordProgressions = [
   [1, 5, 6, 4],
@@ -42,7 +42,7 @@ const randomChoice = array => array[Math.floor(Math.random() * array.length)];
 export class LitChord extends LitElement {
   constructor() {
     super();
-    this.randomize();
+    this.randomizeAll();
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -53,9 +53,17 @@ export class LitChord extends LitElement {
     };
   }
 
-  randomize() {
+  randomizeRootNote() {
     this.rootNote = randomChoice(rootNotes);
+  }
+
+  randomizeProgression() {
     this.progression = randomChoice(chordProgressions);
+  }
+
+  randomizeAll() {
+    this.randomizeRootNote();
+    this.randomizeProgression();
   }
 
   progressionNumerals() {
@@ -79,8 +87,6 @@ export class LitChord extends LitElement {
   }
 
   progressionChords() {
-    // const rootIndex = rootNotes.indexOf(this.rootNote);
-    // const notes = rootNotes.slice(rootIndex) + rootNotes.slice(0, rootIndex);
     const notes = this.notesInScale();
     return this.progression.map(num => `${notes[num - 1]}${chords[num - 1]}`);
   }
@@ -107,6 +113,15 @@ export class LitChord extends LitElement {
             `
           )}
         </div>
+        <!-- <button class="button" @click=${this.randomizeAll}>
+          randomize all
+        </button>
+        <button class="button" @click=${this.randomizeRootNote}>
+          randomize Root note
+        </button>
+        <button class="button" @click=${this.randomizeProgression}>
+          randomize Progression
+        </button> -->
       </div>
       ${bulmaStyle}
     `;
