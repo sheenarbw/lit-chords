@@ -46,7 +46,7 @@ export class LitChord extends LitElement {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  properties() {
+  static get properties() {
     return {
       rootNote: { type: String },
       progression: { type: Array },
@@ -113,7 +113,7 @@ export class LitChord extends LitElement {
             `
           )}
         </div>
-        <!-- <button class="button" @click=${this.randomizeAll}>
+        <button class="button" @click=${this.randomizeAll}>
           randomize all
         </button>
         <button class="button" @click=${this.randomizeRootNote}>
@@ -121,7 +121,7 @@ export class LitChord extends LitElement {
         </button>
         <button class="button" @click=${this.randomizeProgression}>
           randomize Progression
-        </button> -->
+        </button>
       </div>
       ${bulmaStyle}
     `;
